@@ -1,8 +1,8 @@
 package model
 
 type Pokemon struct {
-	ID        uint      `json:"ID"`
-	Name      string    `json:"Name"`
+	ID        uint      `json:"id"`
+	Name      string    `json:"name"`
 }
 
 func (Pokemon) TableName() string { return "pokemons" }
