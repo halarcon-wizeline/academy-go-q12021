@@ -1,10 +1,10 @@
 package router
 
-import (
+// import (
 	// "github.com/labstack/echo"
 	// "github.com/labstack/echo/middleware"
 	// "github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
-)
+// )
 /*
 func NewRouter(e *echo.Echo, c controller.AppController) *echo.Echo {
 	e.Use(middleware.Logger())
