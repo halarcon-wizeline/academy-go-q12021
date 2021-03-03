@@ -2,7 +2,7 @@ package registry
 
 import (
 	// "github.com/jinzhu/gorm"
-	"github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
+	// "github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
 )
 
 // type registry struct {

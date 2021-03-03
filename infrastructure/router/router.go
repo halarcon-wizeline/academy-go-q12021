@@ -13,4 +13,4 @@ func NewRouter(e *echo.Echo, c controller.AppController) *echo.Echo {
 	e.GET("/pokemons", func(context echo.Context) error { return c.GetPokemons(context) })
 
 	return e
-}*/
+}*
