@@ -21,7 +21,7 @@ func NewPokemonRepository() PokemonRepository {
 
 func (ur *pokemonRepository) FindAll(u []*model.Pokemon) ([]*model.Pokemon, error) {
 	// err := ur.db.Find(&u).Error
-	err := ""
+	err := nil
 
 	if err != nil {
 		return nil, err
