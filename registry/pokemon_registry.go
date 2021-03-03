@@ -1,12 +1,12 @@
 package registry
 
 import (
-	"../interface/controller"
-	ip "../interface/presenter"
-	ir "../interface/repository"
-	"../usecase/interactor"
-	up "../usecase/presenter"
-	ur "../usecase/repository"
+	"https://github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
+	ip "https://github.com/halarcon-wizeline/academy-go-q12021/interface/presenter"
+	ir "https://github.com/halarcon-wizeline/academy-go-q12021/interface/repository"
+	"https://github.com/halarcon-wizeline/academy-go-q12021/usecase/interactor"
+	up "https://github.com/halarcon-wizeline/academy-go-q12021/usecase/presenter"
+	ur "https://github.com/halarcon-wizeline/academy-go-q12021/usecase/repository"
 )
 
 func (r *registry) NewPokemonController() controller.PokemonController {

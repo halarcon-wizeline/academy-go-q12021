@@ -1,9 +1,9 @@
 package interactor
 
 import (
-	"../domain/model"
-	"../usecase/presenter"
-	"../usecase/repository"
+	"https://github.com/halarcon-wizeline/academy-go-q12021/domain/model"
+	"https://github.com/halarcon-wizeline/academy-go-q12021/usecase/presenter"
+	"https://github.com/halarcon-wizeline/academy-go-q12021/usecase/repository"
 )
 
 type pokemonInteractor struct {
