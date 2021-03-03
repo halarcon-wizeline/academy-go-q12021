@@ -2,8 +2,8 @@ package controller
 
 import (
 	"net/http"
-	"https://github.com/halarcon-wizeline/academy-go-q12021/domain/model"
-	"https://github.com/halarcon-wizeline/academy-go-q12021/usecase/interactor"
+	"github.com/halarcon-wizeline/academy-go-q12021/domain/model"
+	"github.com/halarcon-wizeline/academy-go-q12021/usecase/interactor"
 )
 
 type pokemonController struct {

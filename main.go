@@ -9,7 +9,7 @@ import (
 
 	// "../config"
 	// "../infrastructure/datastore"
-	"https://github.com/halarcon-wizeline/academy-go-q12021/infrastructure/router"
+	"github.com/halarcon-wizeline/academy-go-q12021/infrastructure/router"
 	// "../registry"
 )
 

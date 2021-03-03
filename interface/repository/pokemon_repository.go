@@ -2,7 +2,7 @@ package repository
 
 import (
 	// "github.com/jinzhu/gorm"
-	"https://github.com/halarcon-wizeline/academy-go-q12021/domain/model"
+	"github.com/halarcon-wizeline/academy-go-q12021/domain/model"
 )
 
 type pokemonRepository struct {

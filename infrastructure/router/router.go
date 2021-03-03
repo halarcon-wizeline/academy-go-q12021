@@ -3,7 +3,7 @@ package router
 import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	"https://github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
+	"github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
 )
 
 func NewRouter(e *echo.Echo, c controller.AppController) *echo.Echo {
