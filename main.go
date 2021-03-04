@@ -1,15 +1,15 @@
 package main
 
 import (
-	// "fmt"
-	// "log"
+	"fmt"
+	"log"
 	// "errors"
 
-	// "github.com/labstack/echo"
+	"github.com/labstack/echo"
 
-	// "github.com/halarcon-wizeline/academy-go-q12021/infrastructure/datastore"
-	// "github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
-	// "github.com/halarcon-wizeline/academy-go-q12021/registry"
+	"github.com/halarcon-wizeline/academy-go-q12021/infrastructure/datastore"
+	"github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
+	"github.com/halarcon-wizeline/academy-go-q12021/registry"
 
 	// "fmt"
 	// "log"
@@ -19,77 +19,24 @@ import (
 	// "io"
 	// "os"
 
-  // "github.com/halarcon-wizeline/academy-go-q12021/domain/model"
-  // "github.com/halarcon-wizeline/academy-go-q12021/usecase/interactor"
-  // "github.com/halarcon-wizeline/academy-go-q12021/usecase/presenter"
-  // "github.com/halarcon-wizeline/academy-go-q12021/usecase/repository"
-
-  ip "github.com/halarcon-wizeline/academy-go-q12021/interface/presenter"
-  // ir "github.com/halarcon-wizeline/academy-go-q12021/interface/repository"
-
-  // "github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
 )
 
-// type pokemonRepository struct {
-// 	// db *gorm.DB
-// }
-
-// func (ur *pokemonRepository) FindAll(u []*model.Pokemon) ([]*model.Pokemon, error) {
-// 	// var Err error 
-// 	var ErrNotFound = errors.New("not found")
-// 	ErrNotFound = nil
-// 	// err := nil
-
-// 	if ErrNotFound != nil {
-// 		return nil, ErrNotFound
-// 	}
-
-// 	return u, nil
-// }
-
-/*
-type pokemonPresenter struct {
-}
-
-func (up *pokemonPresenter) ResponsePokemons(us []*model.Pokemon) []*model.Pokemon {
-	for _, u := range us {
-		u.Name = "Po: " + u.Name
-	}
-	return us
-}
-
-
 func main() {
-*/
-
-
-	ip.NewPokemonPresenter()
-	// ir.NewPokemonRepository()
-
-
-	// p := model.Pokemon {1, "test"}
-	// type pokemonInteractor struct {
-	// 	PokemonRepository repository.PokemonRepository
-	// 	PokemonPresenter  presenter.PokemonPresenter
-	// }
-
-
-	// fmt.Println(p.ID)
-	// fmt.Println(p.Name)
 
 	// db := datastore.NewDB()
 	// db.LogMode(true)
 	// defer db.Close()
 
-	// r := registry.NewRegistry(db)
+	r := registry.NewRegistry()
 
-	// e := echo.New()
-	// e = router.NewRouter(e, r.NewAppController())
+	e := echo.New()
+	e = router.NewRouter(e, r.NewAppController())
 
-	// fmt.Println("Server listen at http://localhost" + ":" + config.C.Server.Address)
-	// if err := e.Start(":" + config.C.Server.Address); err != nil {
-	// 	log.Fatalln(err)
-	// }
+	serverPort := "8081"
+	fmt.Println("Server listen at http://localhost" + ":" + serverPort)
+	if err := e.Start(":" + serverPort); err != nil {
+		log.Fatalln(err)
+	}
 }
 
 
