@@ -7,8 +7,8 @@ import (
 
 	"github.com/labstack/echo"
 
-	"github.com/halarcon-wizeline/academy-go-q12021/infrastructure/datastore"
-	"github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
+	// "github.com/halarcon-wizeline/academy-go-q12021/infrastructure/datastore"
+	// "github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
 	"github.com/halarcon-wizeline/academy-go-q12021/registry"
 
 	// "fmt"
@@ -23,12 +23,9 @@ import (
 
 func main() {
 
-	// db := datastore.NewDB()
-	// db.LogMode(true)
-	// defer db.Close()
-/*
 	r := registry.NewRegistry()
 
+/*
 	e := echo.New()
 	e = router.NewRouter(e, r.NewAppController())
 
