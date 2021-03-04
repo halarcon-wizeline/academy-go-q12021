@@ -1,7 +1,7 @@
 package router
 
 import (
-	// "golang-clean-architecture/interface/controller"
+	"github.com/halarcon-wizeline/academy-go-q12021/controller"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
