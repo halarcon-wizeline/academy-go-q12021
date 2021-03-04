@@ -23,7 +23,6 @@ func NewPokemonRepository() PokemonRepository {
 func (ur *pokemonRepository) FindAll(u []*model.Pokemon) ([]*model.Pokemon, error) {
 	var ErrNotFound = errors.New("not found")
 	ErrNotFound = nil
-	// err := nil
 
 	if ErrNotFound != nil {
 		return nil, ErrNotFound

@@ -1,6 +1,8 @@
 package presenter
 
-import "github.com/halarcon-wizeline/academy-go-q12021/domain/model"
+import (
+	"github.com/halarcon-wizeline/academy-go-q12021/domain/model"
+)
 
 type pokemonPresenter struct {
 }
@@ -15,7 +17,7 @@ func NewPokemonPresenter() PokemonPresenter {
 
 func (up *pokemonPresenter) ResponsePokemons(us []*model.Pokemon) []*model.Pokemon {
 	for _, u := range us {
-		u.ID = "Pokemon " + u.Name
+		u.Name = "Pokemon: " + u.Name
 	}
 	return us
 }
