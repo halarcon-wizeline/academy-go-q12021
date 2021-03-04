@@ -2,7 +2,7 @@ package controller
 
 import (
 	"net/http"
-	// "github.com/halarcon-wizeline/academy-go-q12021/domain/model"
+	"github.com/halarcon-wizeline/academy-go-q12021/domain/model"
 	"github.com/halarcon-wizeline/academy-go-q12021/usecase/interactor"
 )
 
