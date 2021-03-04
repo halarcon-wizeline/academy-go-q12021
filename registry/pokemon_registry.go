@@ -1,7 +1,7 @@
 package registry
 
 import (
-	// "github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
+	"github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
 	ip "github.com/halarcon-wizeline/academy-go-q12021/interface/presenter"
 	ir "github.com/halarcon-wizeline/academy-go-q12021/interface/repository"
 	"github.com/halarcon-wizeline/academy-go-q12021/usecase/interactor"
