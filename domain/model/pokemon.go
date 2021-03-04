@@ -1,7 +1,7 @@
 package model
 
 type Pokemon struct {
-	ID        string    `json:"id"`
+	ID        uint      `json:"id"`
 	Name      string    `json:"name"`
 }
 
