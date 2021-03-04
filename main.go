@@ -10,7 +10,7 @@ import (
 	// "github.com/halarcon-wizeline/academy-go-q12021/infrastructure/datastore"
 	// "github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
 	// "github.com/gorilla/mux"
-	"github.com/halarcon-wizeline/academy-go-q12021/router"
+	"github.com/halarcon-wizeline/academy-go-q12021/infrastructure/router"
 	"github.com/halarcon-wizeline/academy-go-q12021/registry"
 
 /*
