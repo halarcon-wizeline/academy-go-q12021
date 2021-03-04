@@ -26,7 +26,7 @@ func main() {
 	// db := datastore.NewDB()
 	// db.LogMode(true)
 	// defer db.Close()
-
+/*
 	r := registry.NewRegistry()
 
 	e := echo.New()
@@ -37,6 +37,7 @@ func main() {
 	if err := e.Start(":" + serverPort); err != nil {
 		log.Fatalln(err)
 	}
+	*/
 }
 
 
