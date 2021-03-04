@@ -26,6 +26,7 @@ import (
 
 	"github.com/halarcon-wizeline/academy-go-q12021/domain/model"
 */
+
 )
 
 
@@ -105,7 +106,6 @@ func readCsvPokemons(file string) []model.Pokemon {
 		if err != nil {
 			log.Fatalln("Error: Pokemon: %s does not have a valid ID\n", record[1])
 		}
-		var val int = id
 		pokemon := model.Pokemon {ID:id, Name:record[1]}
 		pokemons = append(pokemons, pokemon)
 	}
