@@ -1,19 +1,16 @@
 package main
 
 import (
+/*
+	// TODO Clean architecture imports
 	"fmt"
 	"log"
-	// "errors"
-
 	"github.com/labstack/echo"
-
-	// "github.com/halarcon-wizeline/academy-go-q12021/infrastructure/datastore"
-	// "github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
-	// "github.com/gorilla/mux"
 	"github.com/halarcon-wizeline/academy-go-q12021/infrastructure/router"
 	"github.com/halarcon-wizeline/academy-go-q12021/registry"
+*/
 
-/*
+	// TODO mux approach
 	"fmt"
 	"log"
 	"net/http"
@@ -23,38 +20,22 @@ import (
 	"os"
 	"strconv"
 	"github.com/gorilla/mux"
-
 	"github.com/halarcon-wizeline/academy-go-q12021/domain/model"
-*/
 
 )
 
 
-func main() {
-
-	r := registry.NewRegistry()
-
-	e := echo.New()
-	e = router.NewRouter(e, r.NewAppController())
-
-	serverPort := "8081"
-	fmt.Println("Server listen at http://localhost" + ":" + serverPort)
-	if err := e.Start(":" + serverPort); err != nil {
-		log.Fatalln(err)
-	}
-}
-
-
-
-/*
 var pokemons []model.Pokemon
+var serverPort string = "8081"
 
+// GET /pokemons endpoint
 func allPokemons(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("Endpoint Hit: All Pokemons Endpoint")
 	json.NewEncoder(w).Encode(pokemons)
 }
 
+// GET /pokemons/{id} endpoint
 func catchPokemon(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(r.URL)
@@ -76,10 +57,12 @@ func catchPokemon(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&model.Pokemon{})
 }
 
+// GET / endpoint
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Homepage Endpoint Hit")
 }
 
+// Read csv file
 func readCsvPokemons(file string) []model.Pokemon {
 	// Open the file
 	csvfile, err := os.Open(file)
@@ -116,7 +99,6 @@ func handleRequests() {
 
 	myRouter := mux.NewRouter().StrictSlash(true)
 
-	serverPort := "8081"
 	fmt.Println("Server listen at http://localhost" + ":" + serverPort)
 	myRouter.HandleFunc("/", homePage)
 	myRouter.HandleFunc("/pokemons", allPokemons).Methods("GET")
@@ -126,8 +108,21 @@ func handleRequests() {
 
 func main() {
 
-	pokemons = readCsvPokemons("./infrastructure/datastore/pokemons.csv")
+	// TODO add Clean architecture
+	/*
+	r := registry.NewRegistry()
 
+	e := echo.New()
+	e = router.NewRouter(e, r.NewAppController())
+
+	fmt.Println("Server listen at http://localhost" + ":" + serverPort)
+	if err := e.Start(":" + serverPort); err != nil {
+		log.Fatalln(err)
+	}
+	*/
+
+	// mux approach
+	pokemons = readCsvPokemons("./infrastructure/datastore/pokemons.csv")
 	handleRequests()
+
 }
-*/
