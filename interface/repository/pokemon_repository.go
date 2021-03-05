@@ -23,9 +23,9 @@ func NewPokemonRepository() PokemonRepository {
 
 func (ur *pokemonRepository) FindAll(u []*model.Pokemon) ([]*model.Pokemon, error) {
 
-	log.Fatalln("FindAll")
+	fmt.Printf("FindAll")
 
-	pokemons = readCsvPokemons("./infrastructure/datastore/pokemons.csv")
+	pokemons = readCsvPokemons("../infrastructure/datastore/pokemons.csv")
 
 	// Open the file
 	csvfile, err := os.Open(file)
@@ -37,7 +37,7 @@ func (ur *pokemonRepository) FindAll(u []*model.Pokemon) ([]*model.Pokemon, erro
 	// Parse the file
 	r := csv.NewReader(csvfile)
 
-	var pokemons []model.Pokemon
+	// var pokemons []model.Pokemon
 	// Iterate through the records
 	for {
 		// Read each record from csv
