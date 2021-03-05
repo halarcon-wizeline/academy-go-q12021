@@ -25,7 +25,7 @@ func (ur *pokemonRepository) FindAll(u []*model.Pokemon) ([]*model.Pokemon, erro
 
 	fmt.Printf("FindAll")
 
-	pokemons = readCsvPokemons("../infrastructure/datastore/pokemons.csv")
+	pokemons = readCsvPokemons("../../infrastructure/datastore/pokemons.csv")
 
 	// Open the file
 	csvfile, err := os.Open(file)
