@@ -107,9 +107,8 @@ func handleRequests() {
 }
 
 func main() {
-
-	// TODO add Clean architecture
 	/*
+	// TODO add Clean architecture
 	r := registry.NewRegistry()
 
 	e := echo.New()
@@ -124,5 +123,4 @@ func main() {
 	// mux approach
 	pokemons = readCsvPokemons("./infrastructure/datastore/pokemons.csv")
 	handleRequests()
-
 }
