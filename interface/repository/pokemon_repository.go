@@ -23,6 +23,8 @@ func NewPokemonRepository() PokemonRepository {
 
 func (ur *pokemonRepository) FindAll(u []*model.Pokemon) ([]*model.Pokemon, error) {
 
+	fmt.Printf("FindAll")
+
 	pokemons = readCsvPokemons("./infrastructure/datastore/pokemons.csv")
 
 	// Open the file
@@ -55,14 +57,4 @@ func (ur *pokemonRepository) FindAll(u []*model.Pokemon) ([]*model.Pokemon, erro
 		pokemons = append(pokemons, pokemon)
 	}
 	return pokemons, nil
-
-	// var ErrNotFound = errors.New("not found")
-	// ErrNotFound = nil
-
-	// if ErrNotFound != nil {
-	// 	return nil, ErrNotFound
-	// }
-
-	// return u, nil
-
 }

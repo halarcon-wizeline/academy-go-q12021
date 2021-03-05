@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"github.com/halarcon-wizeline/academy-go-q12021/domain/model"
 	"github.com/halarcon-wizeline/academy-go-q12021/usecase/interactor"
@@ -19,6 +20,9 @@ func NewPokemonController(us interactor.PokemonInteractor) PokemonController {
 }
 
 func (uc *pokemonController) GetPokemons(c Context) error {
+
+	fmt.Printf("GetPokemons")
+
 	var u []*model.Pokemon
 
 	u, err := uc.pokemonInteractor.Get(u)
