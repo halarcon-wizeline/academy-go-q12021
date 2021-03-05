@@ -21,7 +21,7 @@ func NewPokemonController(us interactor.PokemonInteractor) PokemonController {
 
 func (uc *pokemonController) GetPokemons(c Context) error {
 
-	fmt.Printf("GetPokemons")
+	log.Fatalln("GetPokemons")
 
 	var u []*model.Pokemon
 

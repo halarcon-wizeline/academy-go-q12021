@@ -23,7 +23,7 @@ func NewPokemonRepository() PokemonRepository {
 
 func (ur *pokemonRepository) FindAll(u []*model.Pokemon) ([]*model.Pokemon, error) {
 
-	fmt.Printf("FindAll")
+	log.Fatalln("FindAll")
 
 	pokemons = readCsvPokemons("./infrastructure/datastore/pokemons.csv")
 
