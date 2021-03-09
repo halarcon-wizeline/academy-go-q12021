@@ -5,4 +5,4 @@ type Pokemon struct {
 	Name      string    `json:"name"`
 }
 
-func (Pokemon) TableName() string { return "pokemons" }
+// func (Pokemon) TableName() string { return "pokemons" }
