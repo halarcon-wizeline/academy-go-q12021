@@ -1,7 +1,7 @@
 package router
 
 import (
-	"fmt"
+	"log"
 	"net/http"
 	"github.com/halarcon-wizeline/academy-go-q12021/interface/controller"
 	"github.com/labstack/echo"
@@ -9,25 +9,25 @@ import (
 )
 
 func NewRouter(e *echo.Echo, c controller.AppController) *echo.Echo {
-	fmt.Printf("NewRouter")
+	log.Println("NewRouter Starting")
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
 	e.GET("/pokemons",
 		func(context echo.Context) error {
-			fmt.Printf("pokemons")
+			log.Println("pokemons")
 			return c.GetPokemons(context)
 	})
 	e.GET("/pokemons/:id",
 		func(context echo.Context) error {
-			fmt.Printf("pokemons/:id")
+			log.Println("pokemons/:id")
 			id := context.Param("id")
 			return context.String(http.StatusOK, id)
 	})
 
-	e.GET("/",
+	e.GET("/hello",
 		func(context echo.Context) error {
-			fmt.Printf("pokemons")
+			log.Println("pokemons")
 			return context.String(http.StatusOK, "Hello, World!")
 	})
 
