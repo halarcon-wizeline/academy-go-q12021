@@ -9,25 +9,29 @@ import (
 )
 
 func NewRouter(e *echo.Echo, c controller.AppController) *echo.Echo {
-	log.Println("*****NewRouter Starting")
+	log.Println("**********")
+	log.Println("NewRouter Starting")
 	// e.Use(middleware.Logger())
 	// e.Use(middleware.Recover())
 
 	e.GET("/pokemons",
 		func(context echo.Context) error {
-			log.Println("*****pokemons")
+			log.Println("**********")
+			log.Println("pokemons")
 			return c.GetPokemons(context)
 	})
 	e.GET("/pokemons/:id",
 		func(context echo.Context) error {
-			log.Println("*****pokemons/:id")
+			log.Println("**********")
+			log.Println("pokemons/:id")
 			id := context.Param("id")
 			return context.String(http.StatusOK, id)
 	})
 
 	e.GET("/hello",
 		func(context echo.Context) error {
-			log.Println("*****pokemons")
+			log.Println("**********")
+			log.Println("hello")
 			return context.String(http.StatusOK, "Hello, World!")
 	})
 
