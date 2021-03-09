@@ -8,11 +8,11 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
-func NewRouter(e *echo.Echo, c controller.AppController) *echo.Echo {
+func NewRouter(e echo.Echo, c controller.AppController) echo.Echo {
 	log.Println("**********")
 	log.Println("NewRouter Starting")
-	// e.Use(middleware.Logger())
-	// e.Use(middleware.Recover())
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
 
 	e.GET("/pokemons",
 		func(context echo.Context) error {
