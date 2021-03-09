@@ -14,7 +14,7 @@ func NewRouter(e echo.Echo, c controller.AppController) echo.Echo {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.GET("/pokemons",
+	e.GET("/newpokemons",
 		func(context echo.Context) error {
 			log.Println("**********")
 			log.Println("pokemons")
