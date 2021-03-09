@@ -1,32 +1,53 @@
 package datastore
 
 import (
-  // "log"
-
-  // "github.com/go-sql-driver/mysql"
-  // "github.com/jinzhu/gorm"
-  // "github.com/manakuro/golang-clean-architecture/config"
+	"log"
+	"fmt"
+	"io"
+	"os"
+	"encoding/csv"
+	"strconv"
+	"github.com/halarcon-wizeline/academy-go-q12021/domain/model"
 )
 
-// func NewDB() *gorm.DB {
-//   DBMS := "mysql"
-//   mySqlConfig := &mysql.Config{
-//     User:                 config.C.Database.User,
-//     Passwd:               config.C.Database.Password,
-//     Net:                  config.C.Database.Net,
-//     Addr:                 config.C.Database.Addr,
-//     DBName:               config.C.Database.DBName,
-//     AllowNativePasswords: config.C.Database.AllowNativePasswords,
-//     Params: map[string]string{
-//       "parseTime": config.C.Database.Params.ParseTime,
-//     },
-//   }
+// Read csv file
+func readCsvPokemons(file string) []model.Pokemon {
 
-//   db, err := gorm.Open(DBMS, mySqlConfig.FormatDSN())
+	// Open the file
+	csvfile, err := os.Open(file)
+	if err != nil {
+		log.Fatalln("Couldn't open the csv file", err)
+	}
 
-//   if err != nil {
-//     log.Fatalln(err)
-//   }
+	// Parse the file
+	r := csv.NewReader(csvfile)
 
-//   return db
-// }
+	var pokemons []model.Pokemon
+	for {
+		// Read each record from csv
+		record, err := r.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatal(err)
+		}
+		
+		fmt.Printf("Reading pokemon: %s %s\n", record[0], record[1])
+		id, err := strconv.Atoi(record[0])
+		if err != nil {
+			log.Fatalln("Error: Pokemon: %s does not have a valid ID\n", record[1])
+		}
+		pokemon := model.Pokemon {ID:id, Name:record[1]}
+		pokemons = append(pokemons, pokemon)
+	}
+	return pokemons
+}
+
+func NewPokemonDB() []model.Pokemon {
+
+	var pokemons []model.Pokemon
+  pokemons = readCsvPokemons("./infrastructure/datastore/pokemons.csv")
+
+  return pokemons
+}

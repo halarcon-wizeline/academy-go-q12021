@@ -1,6 +1,7 @@
 package interactor
 
 import (
+	"log"
 	"github.com/halarcon-wizeline/academy-go-q12021/domain/model"
 	"github.com/halarcon-wizeline/academy-go-q12021/usecase/presenter"
 	"github.com/halarcon-wizeline/academy-go-q12021/usecase/repository"
@@ -12,18 +13,21 @@ type pokemonInteractor struct {
 }
 
 type PokemonInteractor interface {
-	Get(u []*model.Pokemon) ([]*model.Pokemon, error)
+	Get() ([]model.Pokemon, error)
 }
 
 func NewPokemonInteractor(r repository.PokemonRepository, p presenter.PokemonPresenter) PokemonInteractor {
 	return &pokemonInteractor{r, p}
 }
 
-func (us *pokemonInteractor) Get(u []*model.Pokemon) ([]*model.Pokemon, error) {
-	u, err := us.PokemonRepository.FindAll(u)
+func (pokemonInteractor *pokemonInteractor) Get() ([]model.Pokemon, error) {
+
+	log.Println("Get")
+
+	pokemon, err := pokemonInteractor.PokemonRepository.FindAll()
 	if err != nil {
 		return nil, err
 	}
 
-	return us.PokemonPresenter.ResponsePokemons(u), nil
+	return pokemonInteractor.PokemonPresenter.ResponsePokemons(pokemon), nil
 }

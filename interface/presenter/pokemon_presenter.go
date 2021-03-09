@@ -8,16 +8,13 @@ type pokemonPresenter struct {
 }
 
 type PokemonPresenter interface {
-	ResponsePokemons(us []*model.Pokemon) []*model.Pokemon
+	ResponsePokemons(pokemonPresenter []model.Pokemon) []model.Pokemon
 }
 
 func NewPokemonPresenter() PokemonPresenter {
 	return &pokemonPresenter{}
 }
 
-func (up *pokemonPresenter) ResponsePokemons(us []*model.Pokemon) []*model.Pokemon {
-	for _, u := range us {
-		u.Name = "Pokemon: " + u.Name
-	}
-	return us
+func (pokemonPresenter *pokemonPresenter) ResponsePokemons(pokemons []model.Pokemon) []model.Pokemon {
+	return pokemons
 }

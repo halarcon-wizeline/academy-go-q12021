@@ -3,7 +3,6 @@ package controller
 import (
 	"log"
 	"net/http"
-	"github.com/halarcon-wizeline/academy-go-q12021/domain/model"
 	"github.com/halarcon-wizeline/academy-go-q12021/usecase/interactor"
 )
 
@@ -12,22 +11,21 @@ type pokemonController struct {
 }
 
 type PokemonController interface {
-	GetPokemons(c Context) error
+	GetPokemons(context Context) error
 }
 
-func NewPokemonController(us interactor.PokemonInteractor) PokemonController {
-	return &pokemonController{us}
+func NewPokemonController(pokemonInteractor interactor.PokemonInteractor) PokemonController {
+	return &pokemonController{pokemonInteractor}
 }
 
-func (uc *pokemonController) GetPokemons(c Context) error {
+func (pokemonController *pokemonController) GetPokemons(context Context) error {
 	log.Println("GetPokemons")
 
-	var u []*model.Pokemon
+	pokemon, err := pokemonController.pokemonInteractor.Get()
 
-	u, err := uc.pokemonInteractor.Get(u)
 	if err != nil {
 		return err
 	}
 
-	return c.JSON(http.StatusOK, u)
+	return context.JSON(http.StatusOK, pokemon)
 }
