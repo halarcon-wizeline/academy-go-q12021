@@ -5,24 +5,26 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"errors"
 	"encoding/csv"
 	"strconv"
 	"github.com/halarcon-wizeline/academy-go-q12021/domain/model"
 )
 
 // Read csv file
-func readCsvPokemons(file string) []model.Pokemon {
+func readCsvPokemons(file string) ([]model.Pokemon, error) {
+
+	var pokemons []model.Pokemon
 
 	// Open the file
 	csvfile, err := os.Open(file)
 	if err != nil {
-		log.Fatalln("Couldn't open the csv file", err)
+		return pokemons, errors.New("Couldn't open the csv file")
 	}
 
 	// Parse the file
 	r := csv.NewReader(csvfile)
 
-	var pokemons []model.Pokemon
 	for {
 		// Read each record from csv
 		record, err := r.Read()
@@ -36,18 +38,21 @@ func readCsvPokemons(file string) []model.Pokemon {
 		fmt.Printf("Reading pokemon: %s %s\n", record[0], record[1])
 		id, err := strconv.Atoi(record[0])
 		if err != nil {
-			log.Fatalln("Error: Pokemon: %s does not have a valid ID\n", record[1])
+			return pokemons, errors.New("Error: Pokemon does not have a valid ID\n")
 		}
 		pokemon := model.Pokemon {ID:id, Name:record[1]}
 		pokemons = append(pokemons, pokemon)
 	}
-	return pokemons
+	return pokemons, nil
 }
 
-func NewPokemonDB() []model.Pokemon {
+func NewPokemonDB() ([]model.Pokemon, error) {
 
-	var pokemons []model.Pokemon
-  pokemons = readCsvPokemons("./infrastructure/datastore/pokemons.csv")
+	pokemons, err := readCsvPokemons("./infrastructure/datastore/pokemons.csv")
 
-  return pokemons
+	if err != nil {
+		return nil, err
+	}
+
+	return pokemons, nil
 }

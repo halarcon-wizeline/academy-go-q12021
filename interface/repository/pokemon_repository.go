@@ -20,28 +20,27 @@ func NewPokemonRepository() PokemonRepository {
 }
 
 func (pokemonRepository *pokemonRepository) FindAll() ([]model.Pokemon, error) {
-
 	log.Println("FindAll")
 
-	pokemons := datastore.NewPokemonDB()
+	pokemons, err := datastore.NewPokemonDB()
 
-	// if err != nil {
-	// 	return nil, err
-	// }
+	if err != nil {
+		return pokemons, err
+	}
 
 	return pokemons, nil
 }
 
 func (pokemonRepository *pokemonRepository) Find(pokemonId int) (model.Pokemon, error) {
-
 	log.Println("Find")
+
 	var newPokemon model.Pokemon
 
-	pokemons := datastore.NewPokemonDB()
+	pokemons, err := datastore.NewPokemonDB()
 
-	// if err != nil {
-	// 	return nil, err
-	// }
+	if err != nil {
+		return newPokemon, err
+	}
 
 	for _, pokemon := range pokemons {
 		if pokemon.ID == pokemonId {
