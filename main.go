@@ -22,7 +22,7 @@ var serverPort string = "8081"
 
 func main() {
 
-	useCleanArchitecture := false
+	useCleanArchitecture := true
 
 	if useCleanArchitecture == true {
 		r := registry.NewRegistry()
