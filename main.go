@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/halarcon-wizeline/academy-go-q12021/domain"
-	"github.com/halarcon-wizeline/academy-go-q12021/usecase"
 	"github.com/halarcon-wizeline/academy-go-q12021/controller"
+	"github.com/halarcon-wizeline/academy-go-q12021/domain"
 	"github.com/halarcon-wizeline/academy-go-q12021/router"
+	"github.com/halarcon-wizeline/academy-go-q12021/usecase"
 
 	"github.com/sirupsen/logrus"
 	"github.com/unrolled/render"

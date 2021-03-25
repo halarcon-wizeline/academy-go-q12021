@@ -1,8 +1,8 @@
 package domain
 
-import (
-	"fmt"
-)
+// import (
+// 	"fmt"
+// )
 
 // Pokemon struct definition
 type Pokemon struct {
@@ -34,6 +34,6 @@ func NewPokemon(id int, name string) *Pokemon {
 }
 
 // Info - displays Pokemon's information
-func (*pokemon Pokemon) Info() string {
+/*func (*pokemon Pokemon) Info() string {
 	return fmt.Sprintf("Pokemons, name '%s'\n", pokemon.name)
-}
+}*/
