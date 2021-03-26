@@ -58,6 +58,18 @@ func (mr *MockControllerMockRecorder) GetLocalPokemon(w, r interface{}) *gomock.
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetLocalPokemon", reflect.TypeOf((*MockController)(nil).GetLocalPokemon), w, r)
 }
 
+// GetLocalPokemonWorkers mocks base method.
+func (m *MockController) GetLocalPokemonWorkers(w http.ResponseWriter, r *http.Request) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "GetLocalPokemonWorkers", w, r)
+}
+
+// GetLocalPokemonWorkers indicates an expected call of GetLocalPokemonWorkers.
+func (mr *MockControllerMockRecorder) GetLocalPokemonWorkers(w, r interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetLocalPokemonWorkers", reflect.TypeOf((*MockController)(nil).GetLocalPokemonWorkers), w, r)
+}
+
 // GetLocalPokemons mocks base method.
 func (m *MockController) GetLocalPokemons(w http.ResponseWriter, r *http.Request) {
 	m.ctrl.T.Helper()

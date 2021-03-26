@@ -40,6 +40,13 @@ func Test_New(t *testing.T) {
 			status:         200,
 			callController: true,
 		},
+		{
+			name:           "OK, Pokemon workers",
+			endpoint:       "/pokemon_workers",
+			handlerName:    "GetLocalPokemonWorkers",
+			status:         200,
+			callController: true,
+		},
 	}
 
 	for _, tc := range testCases {
@@ -57,6 +64,8 @@ func Test_New(t *testing.T) {
 						c.EXPECT().GetLocalPokemons(gomock.Any(), gomock.Any()).Times(1)
 					case "GetExternalPokemons":
 						c.EXPECT().GetExternalPokemons(gomock.Any(), gomock.Any()).Times(1)
+					case "GetLocalPokemonWorkers":
+						c.EXPECT().GetLocalPokemonWorkers(gomock.Any(), gomock.Any()).Times(1)
 				}
 			}
 
