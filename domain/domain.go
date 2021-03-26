@@ -32,8 +32,3 @@ func NewPokemon(id int, name string) *Pokemon {
 		Name: name,
 	}
 }
-
-// Info - displays Pokemon's information
-/*func (*pokemon Pokemon) Info() string {
-	return fmt.Sprintf("Pokemons, name '%s'\n", pokemon.name)
-}*/

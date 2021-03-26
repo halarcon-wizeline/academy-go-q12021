@@ -5,14 +5,13 @@ import (
 	"log"
 	"net/http"
 	"os"
-
-	"github.com/halarcon-wizeline/academy-go-q12021/controller"
-	"github.com/halarcon-wizeline/academy-go-q12021/domain"
-	"github.com/halarcon-wizeline/academy-go-q12021/router"
-	"github.com/halarcon-wizeline/academy-go-q12021/usecase"
-
 	"github.com/sirupsen/logrus"
 	"github.com/unrolled/render"
+
+	"github.com/halarcon-wizeline/academy-go-q12021/service"
+	"github.com/halarcon-wizeline/academy-go-q12021/usecase"
+	"github.com/halarcon-wizeline/academy-go-q12021/controller"
+	"github.com/halarcon-wizeline/academy-go-q12021/router"
 )
 
 func main() {
@@ -23,15 +22,14 @@ func main() {
 		log.Fatal("creating logger: %w", err)
 	}
 
-	// Create client
-	pokemon := domain.NewPokemon(1, "Mewto")
-	// fmt.Println(pokemon.Name)
+	// Service
+	service, _ := service.New(logger)
 
 	// Usecase
-	useCase := usecase.New(*pokemon)
+	useCase := usecase.New(service)
 
 	// Controllers
-	controller := controller.New(useCase, logger, render.New())
+	controller := controller.New(useCase, render.New())
 
 	// Setup application routes
 	httpRouter := router.New(controller)
