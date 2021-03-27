@@ -10,8 +10,7 @@ import (
 )
 
 //mockgen -source=router/router.go -destination=router/mocks/router.go -package=mocks
-
-func Test_New(t *testing.T) {
+func Test_Router(t *testing.T) {
 	testCases := []struct {
 		name           string
 		endpoint       string
