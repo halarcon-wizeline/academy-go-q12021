@@ -35,7 +35,7 @@ func readCsvPokemons(file string) ([]domain.Pokemon, error) {
 			log.Fatal(err)
 		}
 		
-		// fmt.Printf("Reading pokemon: %s %s\n", record[0], record[1])
+		fmt.Printf("Reading pokemon: %s %s\n", record[0], record[1])
 		id, err := strconv.Atoi(record[0])
 		if err != nil {
 			return pokemons, errors.New("Error: Pokemon does not have a valid ID\n")

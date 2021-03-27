@@ -20,7 +20,6 @@ func GetPokemons () ([]domain.Pokemon, error) {
   }
 
   data, _ := ioutil.ReadAll(response.Body)
-  // fmt.Println(string(data))
   defer response.Body.Close()
 
   pokemons = parsePokemonsWithStructs(data)
@@ -35,11 +34,8 @@ func parsePokemonsWithStructs (data []byte) ([]domain.Pokemon) {
   var pokemonRequest domain.PokemonApiRequest
 
   json.Unmarshal([]byte(data), &pokemonRequest)
-  // fmt.Println(pokemonRequest.Results[1].ID)
-  // fmt.Println(pokemonRequest.Results[1].Name)
 
   for key, element := range pokemonRequest.Results {
-    // pokemon := domain.NewPokemon(key, element.Name)
     pokemon := domain.Pokemon {ID:key, Name:element.Name}
     pokemons = append(pokemons, pokemon)
   }

@@ -1,9 +1,5 @@
 package domain
 
-// import (
-// 	"fmt"
-// )
-
 // Pokemon struct definition
 type Pokemon struct {
 	ID        int       `json:"id"`
