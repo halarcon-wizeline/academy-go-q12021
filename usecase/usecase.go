@@ -19,33 +19,33 @@ type Service interface {
 
 // New UseCase
 func New(service Service) *UseCase {
-	return &UseCase{service}
+  return &UseCase{service}
 }
 
 // GetExternalPokemons logic
 func (u *UseCase) GetExternalPokemons() (string, error) {
 
-	resp, err := u.service.GetExternalPokemons()
-	return resp, err
+  resp, err := u.service.GetExternalPokemons()
+  return resp, err
 }
 
 // GetLocalPokemons logic
 func (u *UseCase) GetLocalPokemons() ([]domain.Pokemon, error) {
 
-	resp, err := u.service.GetLocalPokemons()
-	return resp, err
+  resp, err := u.service.GetLocalPokemons()
+  return resp, err
 }
 
 // GetLocalPokemon logic
 func (u *UseCase) GetLocalPokemon(id string) (domain.Pokemon, error) {
 
-	resp, err := u.service.GetLocalPokemon(id)
-	return resp, err
+  resp, err := u.service.GetLocalPokemon(id)
+  return resp, err
 }
 
 // GetLocalPokemonWorkers logic
 func (u *UseCase) GetLocalPokemonWorkers(pType, pItems, pItemsPerWorker, pWorkers int) ([]domain.Pokemon, error) {
 
-	resp, err := u.service.GetLocalPokemonWorkers(pType, pItems, pItemsPerWorker, pWorkers)
-	return resp, err
+  resp, err := u.service.GetLocalPokemonWorkers(pType, pItems, pItemsPerWorker, pWorkers)
+  return resp, err
 }

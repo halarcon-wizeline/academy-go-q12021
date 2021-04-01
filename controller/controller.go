@@ -32,20 +32,6 @@ func New(
   return &Controller{u, r}
 }
 
-var pItems = 10
-var pItemsPerWorker = 2
-var pWorkers = 5
-var pType = 1
-
-func init() {
-  // Default values
-  pItems = 10
-  pItemsPerWorker = 2
-  pWorkers = 5
-  // Default to odd
-  pType = 1
-}
-
 // GetExternalPokemons logic
 func (c *Controller) GetExternalPokemons(w http.ResponseWriter, r *http.Request) {
   fmt.Println("[controller] GetExternalPokemons")
@@ -91,11 +77,11 @@ func (c *Controller) GetLocalPokemon(w http.ResponseWriter, r *http.Request) {
 func (c *Controller) GetLocalPokemonWorkers(w http.ResponseWriter, r *http.Request) {
   fmt.Println("[controller] GetLocalPokemonWorkers")
 
-  // Retrieve params and overwrite values
-  pType           = getQueryParams(pType, r, "type")
-  pItems          = getQueryParams(pItems, r, "items")
-  pItemsPerWorker = getQueryParams(pItemsPerWorker, r, "items_per_workers")
-  pWorkers        = getQueryParams(pWorkers, r, "workers")
+  // Retrieve params
+  pType           := getQueryParam(r, "type")
+  pItems          := getQueryParam(r, "items")
+  pItemsPerWorker := getQueryParam(r, "items_per_workers")
+  pWorkers        := getQueryParam(r, "workers")
 
   pokemons, err := c.useCase.GetLocalPokemonWorkers(pType, pItems, pItemsPerWorker, pWorkers)
   if err != nil {
@@ -107,9 +93,9 @@ func (c *Controller) GetLocalPokemonWorkers(w http.ResponseWriter, r *http.Reque
   c.render.JSON(w, http.StatusOK, pokemons)
 }
 
-func getQueryParams(defaultValue int, r *http.Request, index string) int {
+func getQueryParam(r *http.Request, index string) int {
   param := r.URL.Query().Get(index)
-  newParam := defaultValue
+  newParam := 0
 
   if index == "type" {
     switch param {

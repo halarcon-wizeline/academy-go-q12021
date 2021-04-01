@@ -25,6 +25,20 @@ func New(
   return &Service{logger}, nil
 }
 
+var pItems int
+var pItemsPerWorker int
+var pWorkers int
+var pType int
+
+func init() {
+  // Default values
+  pItems = 10
+  pItemsPerWorker = 2
+  pWorkers = 5
+  // Default to odd
+  pType = 1
+}
+
 // GetExternalPokemons logic
 func (s *Service) GetExternalPokemons() (string, error) {
   fmt.Println("[controller] GetExternalPokemons")
@@ -94,12 +108,26 @@ func (s *Service) GetLocalPokemon(id string) (domain.Pokemon, error) {
 }
 
 // GetLocalPokemonWorkers logic
-func (s *Service) GetLocalPokemonWorkers(pType, pItems, pItemsPerWorker, pWorkers int) ([]domain.Pokemon, error) {
+func (s *Service) GetLocalPokemonWorkers(paramType, paramItems, paramItemsPerWorker, paramWorkers int) ([]domain.Pokemon, error) {
   fmt.Println("[controller] GetLocalPokemonWorkers")
 
   var pokemons = []domain.Pokemon{}
 
-  logger := s.logger.WithFields(logrus.Fields{"func": "Get Local Pokemon Workers", "param:type": pType, "param:items": pItems, "param:items_per_workers": pItemsPerWorker, } )
+  // Overwrite default values
+  if paramType != 0 {
+    pType = paramType
+  }
+  if paramItems != 0 {
+    pItems = paramItems
+  }
+  if paramItemsPerWorker != 0 {
+    pItemsPerWorker = paramItemsPerWorker
+  }
+  if paramWorkers != 0 {
+    pWorkers = paramWorkers
+  }
+
+  logger := s.logger.WithFields(logrus.Fields{"func": "Get Local Pokemon Workers", "param:type": pType, "param:items": pItems, "param:items_per_workers": pItemsPerWorker, "param:workers": pWorkers, } )
   logger.Debug("in")
 
   // Retrieve pokemon csv file
