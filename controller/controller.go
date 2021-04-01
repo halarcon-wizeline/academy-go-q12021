@@ -3,6 +3,7 @@ package controller
 import (
   "fmt"
   "net/http"
+  "strconv"
   "github.com/gorilla/mux"
 
   "github.com/unrolled/render"
@@ -14,7 +15,7 @@ type UseCase interface {
   GetExternalPokemons() (string, error)
   GetLocalPokemons() ([]domain.Pokemon, error)
   GetLocalPokemon(string) (domain.Pokemon, error)
-  GetLocalPokemonWorkers(*http.Request) ([]domain.Pokemon, error)
+  GetLocalPokemonWorkers(int, int, int, int) ([]domain.Pokemon, error)
 }
 
 // Controller struct
@@ -29,6 +30,20 @@ func New(
   r *render.Render,
 ) *Controller {
   return &Controller{u, r}
+}
+
+var pItems = 10
+var pItemsPerWorker = 2
+var pWorkers = 5
+var pType = 1
+
+func init() {
+  // Default values
+  pItems = 10
+  pItemsPerWorker = 2
+  pWorkers = 5
+  // Default to odd
+  pType = 1
 }
 
 // GetExternalPokemons logic
@@ -76,7 +91,13 @@ func (c *Controller) GetLocalPokemon(w http.ResponseWriter, r *http.Request) {
 func (c *Controller) GetLocalPokemonWorkers(w http.ResponseWriter, r *http.Request) {
   fmt.Println("[controller] GetLocalPokemonWorkers")
 
-  pokemons, err := c.useCase.GetLocalPokemonWorkers(r)
+  // Retrieve params and overwrite values
+  pType           = getQueryParams(pType, r, "type")
+  pItems          = getQueryParams(pItems, r, "items")
+  pItemsPerWorker = getQueryParams(pItemsPerWorker, r, "items_per_workers")
+  pWorkers        = getQueryParams(pWorkers, r, "workers")
+
+  pokemons, err := c.useCase.GetLocalPokemonWorkers(pType, pItems, pItemsPerWorker, pWorkers)
   if err != nil {
     c.render.Text(w, http.StatusOK, "Pokemon not found")
     return 
@@ -84,4 +105,25 @@ func (c *Controller) GetLocalPokemonWorkers(w http.ResponseWriter, r *http.Reque
 
   w.Header().Set("Content-Type", "application/json")
   c.render.JSON(w, http.StatusOK, pokemons)
+}
+
+func getQueryParams(defaultValue int, r *http.Request, index string) int {
+  param := r.URL.Query().Get(index)
+  newParam := defaultValue
+
+  if index == "type" {
+    switch param {
+      case "odd":
+        newParam = 1
+      case "even":
+        newParam = 2
+    }
+  } else {
+    intParam, err := strconv.Atoi(param)
+    if err == nil {
+      newParam = intParam
+    }
+  }
+
+  return newParam
 }

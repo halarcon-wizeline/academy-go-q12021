@@ -2,7 +2,6 @@ package service
 
 import (
   "fmt"
-  "net/http"
   "strconv"
   "sync"
   "time"
@@ -95,24 +94,10 @@ func (s *Service) GetLocalPokemon(id string) (domain.Pokemon, error) {
 }
 
 // GetLocalPokemonWorkers logic
-func (s *Service) GetLocalPokemonWorkers(r *http.Request) ([]domain.Pokemon, error) {
+func (s *Service) GetLocalPokemonWorkers(pType, pItems, pItemsPerWorker, pWorkers int) ([]domain.Pokemon, error) {
   fmt.Println("[controller] GetLocalPokemonWorkers")
 
   var pokemons = []domain.Pokemon{}
-
-  // Default values
-  pItems := 10
-  pItemsPerWorker := 2
-  pWorkers := 5
-  // Default to odd
-  pType := 1
-
-  // Retrieve params and overwrite values
-  pType           = getQueryParams(pType, r, "type")
-  pItems          = getQueryParams(pItems, r, "items")
-  pItemsPerWorker = getQueryParams(pItemsPerWorker, r, "items_per_workers")
-  pWorkers        = getQueryParams(pWorkers, r, "workers")
-
 
   logger := s.logger.WithFields(logrus.Fields{"func": "Get Local Pokemon Workers", "param:type": pType, "param:items": pItems, "param:items_per_workers": pItemsPerWorker, } )
   logger.Debug("in")
@@ -149,28 +134,6 @@ func (s *Service) GetLocalPokemonWorkers(r *http.Request) ([]domain.Pokemon, err
   fmt.Printf("Pokemons caught: %v\n", pokemons)
 
   return pokemons, nil
-}
-
-func getQueryParams(defaultValue int, r *http.Request, index string) int {
-
-  param := r.URL.Query().Get(index)
-  newParam := defaultValue
-
-  if index == "type" {
-    switch param {
-      case "odd":
-        newParam = 1
-      case "even":
-        newParam = 2
-    }
-  } else {
-    intParam, err := strconv.Atoi(param)
-    if err == nil {
-      newParam = intParam
-    }
-  }
-
-  return newParam
 }
 
 func worker(wg *sync.WaitGroup, pokemonDB []domain.Pokemon, workerId int, chanPokToCatch <- chan int, chanPokCaught chan <- domain.Pokemon, pItemsPerWorker int) {

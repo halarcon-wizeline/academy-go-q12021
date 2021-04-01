@@ -1,8 +1,6 @@
 package usecase
 
 import (
-	"net/http"
-
 	"github.com/halarcon-wizeline/academy-go-q12021/domain"
 )
 
@@ -15,8 +13,8 @@ type UseCase struct {
 type Service interface {
   GetExternalPokemons() (file string, error error)
   GetLocalPokemons() ([]domain.Pokemon, error)
-  GetLocalPokemon(id string) (domain.Pokemon, error)
-  GetLocalPokemonWorkers(r *http.Request) ([]domain.Pokemon, error)
+  GetLocalPokemon(string) (domain.Pokemon, error)
+  GetLocalPokemonWorkers(int, int, int, int) ([]domain.Pokemon, error)
 }
 
 // New UseCase
@@ -46,8 +44,8 @@ func (u *UseCase) GetLocalPokemon(id string) (domain.Pokemon, error) {
 }
 
 // GetLocalPokemonWorkers logic
-func (u *UseCase) GetLocalPokemonWorkers(r *http.Request) ([]domain.Pokemon, error) {
+func (u *UseCase) GetLocalPokemonWorkers(pType, pItems, pItemsPerWorker, pWorkers int) ([]domain.Pokemon, error) {
 
-	resp, err := u.service.GetLocalPokemonWorkers(r)
+	resp, err := u.service.GetLocalPokemonWorkers(pType, pItems, pItemsPerWorker, pWorkers)
 	return resp, err
 }
